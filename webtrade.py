@@ -10,7 +10,8 @@ app = Flask(__name__)
 @app.route('/tradingview', methods=['POST'])
 def process_tradingview(buy_value=3000):
     input = json.loads(request.data)
-    sym = input['symbol'][:3]
+    # sym = input['symbol'][:3]
+    sym = input['symbol'].replace('THB', '')
     if input['cmd'] == 'sell':
         bk = BitKub()
         sym_balance = bk.get_balance(sym)
